@@ -1,3 +1,5 @@
+import { SHA256 } from 'crypto-js';
+
 class Block {
   constructor(
     timestamp,
@@ -12,8 +14,22 @@ class Block {
   }
 
   static get genesis() {
-      const timestamp = (new Date(2000, 0 , 1)).getTime();
-      return new this(timestamp, undefined, 'g3n3sis-h4sh', 'first genesis')
+      const timestamp = Date.now();
+      const data = 'first genesis';
+      return new this(timestamp, undefined, Block.hash(timestamp, 0, data), data);
+  }
+
+  static mine(previousBlock, data) {
+      const { hash: previousHash } = previousBlock;
+      const timestamp = Date.now();
+
+      const hash = Block.hash(timestamp, previousHash, data);
+
+      return new this(timestamp, previousHash, hash, data);
+  }
+
+  static hash(timestamp, previousHash, data) {
+      return SHA256(`${timestamp}${previousHash}${data}`).toString();
   }
 
   toString() {
@@ -26,7 +42,7 @@ class Block {
 
     return `
             ######## BLOCK ###############
-            TimeStamp    : ${timestamp}
+            TimeStamp    : ${Date.now()}
             previousHash : ${previousHash}
             hash         : ${hash}
             data         : ${data}

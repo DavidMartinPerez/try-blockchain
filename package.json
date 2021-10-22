@@ -18,5 +18,8 @@
     "start": "babel-node index.js",
     "nodemon": "nodemon --exec yarn start",
     "eslint": "eslint index.js src"
+  },
+  "dependencies": {
+    "crypto-js": "^4.1.1"
   }
 }
