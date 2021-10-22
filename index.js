@@ -1,5 +1,7 @@
-import PKG from './package.json';
+import Block from './src/blockchain/block';
 
-const { name, version } = PKG;
+const block = new Block('a', 'b', 'c', 'd');
+const { genesis } = Block;
 
-console.log(`${name} - ${version}`);
+console.log(block.toString());
+console.log(genesis)
