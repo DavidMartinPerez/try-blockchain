@@ -14,7 +14,7 @@ class Block {
   }
 
   static get genesis() {
-      const timestamp = Date.now();
+      const timestamp = (new Date(1997,30,4).getTime());
       const data = 'first genesis';
       return new this(timestamp, undefined, Block.hash(timestamp, 0, data), data);
   }
