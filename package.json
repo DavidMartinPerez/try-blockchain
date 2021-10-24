@@ -26,8 +26,7 @@
     "crypto-js": "4.1.1"
   },
   "jest": {
-    "silent": true,
     "verbose": true,
-    "testEnviroment": "node"
+    "testEnvironment": "node"
   }
 }
